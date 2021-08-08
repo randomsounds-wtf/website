@@ -1,4 +1,4 @@
-# RAND0M // S0UNDS Website
+# `RAND0M // S0UNDS` website
 
 Visit -> https://randomsounds.wtf
 
