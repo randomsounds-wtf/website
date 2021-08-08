@@ -1,0 +1,77 @@
+.index header > div:first-of-type {
+  max-width: 50%;
+}
+
+@media (max-width: 1400px) {
+  .index #preview {
+    position: static;
+    width: 80vw;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .index header,
+  .index h1 {
+    text-align: center;
+  }
+  .index header > div:first-of-type {
+    max-width: 100%;
+  }
+  .index #preview > div {
+    max-width: 500px;
+    max-height: 500px;
+  }
+}
+@media (max-width: 850px) {
+  .index header span {
+    margin-left: 0.8rem;
+  }
+}
+
+.index header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding-top: 4rem;
+  min-height: calc(100vh - 8.375rem);
+}
+
+.preview {
+  width: calc(20vw + 100px);
+  height: calc(20vw + 100px);
+  cursor: pointer;
+}
+
+@media (max-width: 1400px) {
+  .preview {
+    padding: 3rem 0;
+    position: static;
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .preview > div {
+    max-width: 400px;
+    max-height: 400px;
+  }
+}
+
+.index header span {
+  margin-left: 1.25rem;
+  font-size: min(3vw, 1rem);
+}
+@media (max-width: 850px) {
+  .index header span {
+    margin-left: 0.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .preview > div {
+    max-width: 350px;
+    max-height: 350px;
+  }
+}
