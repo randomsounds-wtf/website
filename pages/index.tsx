@@ -105,7 +105,7 @@ const Index = () => {
         </div>
         <Draggable>
           <div>
-            <Image src="/cgMusic.png" layout="responsive" width={844} height={633} />
+            <Image src="/cgMusic.png" layout="responsive" width={844} height={633} alt="cgMusic" />
           </div>
         </Draggable>
       </article>
