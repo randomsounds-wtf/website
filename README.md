@@ -1,4 +1,4 @@
-# RAND0M // S0UNDS Website
+# `RAND0M // S0UNDS` website
 
 Visit -> https://randomsounds.wtf
 
@@ -8,6 +8,7 @@ Requires pnpm and Node.js 14+.
 
 ```sh
 pnpm i
-pnpm dev # dev
+pnpm dev # development server with a local test node (e.g. Ganache, `hardhat node`)
+pnpm dev:polygon # development server on Polygon network
 pnpm build && pnpm start # prod
 ```
