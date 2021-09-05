@@ -7,7 +7,6 @@ import { etherFetcher, fetchNFTs, getContract } from '../lib/fetch'
 import { NFTType, NFTWithID, WalletProps } from '../lib/types'
 import { provider as jsonRpcProvider } from '../lib/jsonRpcProvider'
 import useSWR from 'swr'
-import Router from 'next/router'
 // @ts-ignore
 import { claim_btn } from '../styles/nft_card.module.css'
 import Link from 'next/link'
@@ -17,9 +16,8 @@ const ClaimableNFT = ({
   nft,
   isWalletSelected,
   selectWallet,
-  provider,
-  revalidate
-}: { nft: NFTWithID; revalidate: () => Promise<boolean>; isValidating?: boolean } & Pick<
+  provider
+}: { nft: NFTWithID; isValidating?: boolean } & Pick<
   WalletProps,
   'selectWallet' | 'isWalletSelected' | 'provider'
 >) => {
@@ -51,7 +49,6 @@ const ClaimableNFT = ({
                 value: ethers.utils.parseEther('120')
               })
               await tx.wait()
-              await revalidate()
             } catch (e) {
               setErr(e)
             }
@@ -68,12 +65,11 @@ const ClaimableNFT = ({
 const Claim = () => {
   const { isWalletSelected, provider, selectWallet } = useWallet()
 
-  const {
-    data: URIs,
-    error,
-
-    revalidate
-  } = useSWR<{ uri: string; id: ethers.BigNumber }[]>([ownerAddress, jsonRpcProvider], etherFetcher)
+  const { data: URIs, error } = useSWR<{ uri: string; id: ethers.BigNumber }[]>(
+    [ownerAddress, jsonRpcProvider],
+    etherFetcher,
+    { refreshInterval: 2000 }
+  )
 
   const [nfts, setNfts] = useState<NFTWithID[]>([])
 
@@ -94,7 +90,7 @@ const Claim = () => {
   return (
     <div id="grid">
       {nfts?.map((nft) => (
-        <ClaimableNFT key={nft.id} {...{ nft, isWalletSelected, selectWallet, provider, revalidate }} />
+        <ClaimableNFT key={nft.id} {...{ nft, isWalletSelected, selectWallet, provider }} />
       ))}
     </div>
   )

@@ -1,5 +1,5 @@
 import { NFT } from '../components/NFT'
-import { contractAddress, ownerAddress } from '../lib/constants'
+import { ownerAddress } from '../lib/constants'
 import { Box3D } from '../components/Box3D'
 import Link from 'next/link'
 import Image from 'next/image'
