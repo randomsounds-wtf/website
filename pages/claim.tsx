@@ -50,7 +50,7 @@ const ClaimableNFT = ({
               })
               await tx.wait()
             } catch (e) {
-              setErr(e)
+              setErr(e as unknown as Error)
             }
             set(false)
           }}
