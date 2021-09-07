@@ -2,8 +2,8 @@ import { wrapUrl } from './wrapUrl'
 import { Contract, ethers } from 'ethers'
 import NFTJSON from '@randomsounds/contracts/artifacts/contracts/RandomSoundsNFT.sol/RandomSoundsNFT.json'
 import { RandomSoundsNFT } from '@randomsounds/contracts/typechain/RandomSoundsNFT'
-import { NFTType, NFTWithID } from './types'
-import { contractAddress, ownerAddress } from './constants'
+import { NFTWithID } from './types'
+import { contractAddress } from './constants'
 
 export const getContract = async (provider: ethers.providers.Provider | ethers.Signer) => {
   const contract = new Contract(contractAddress, NFTJSON.abi, provider) as unknown as RandomSoundsNFT
