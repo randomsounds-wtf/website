@@ -1,7 +1,4 @@
-import React, { MouseEvent, useEffect } from 'react'
-
-import { PropsWithChildren } from 'react'
-import { useState } from 'react'
+import React, { useEffect, PropsWithChildren, useState } from 'react'
 
 type Props = PropsWithChildren<{
   rotateForce: number

@@ -13,6 +13,10 @@ import { Footer } from '../components/Footer'
 import { useRouter } from 'next/router'
 import { OGP } from 'react-ogp'
 
+const RPC_URL = process.env.NEXT_PUBLIC_JSONRPC_URL
+
+const APP_NAME = 'RAND0M // S0UNDS'
+
 const App = ({ Component, pageProps }: AppProps) => {
   const router = useRouter()
 
@@ -21,7 +25,23 @@ const App = ({ Component, pageProps }: AppProps) => {
       networkId: parseInt(process.env.NEXT_PUBLIC_NETWORK_ID!, 10),
       networkName: process.env.NEXT_PUBLIC_NETWORK_NAME,
       darkMode: true,
-      dappId: DAPP_ID
+      dappId: DAPP_ID,
+      walletSelect: {
+        wallets: [
+          { walletName: 'coinbase' },
+          { walletName: 'trust', rpcUrl: RPC_URL },
+          { walletName: 'metamask' },
+          { walletName: 'trust' },
+          { walletName: 'walletLink', rpcUrl: RPC_URL, appName: APP_NAME },
+          {
+            walletName: 'ledger',
+            rpcUrl: RPC_URL
+          },
+          {
+            walletName: 'frame'
+          }
+        ]
+      }
     }
   })
 

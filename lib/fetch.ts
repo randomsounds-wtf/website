@@ -31,6 +31,8 @@ export const etherFetcher = async (
   if (provider) {
     const contract = await getContract(provider)
 
-    return await (contract as any)[func](addr)
+    const result = await (contract as any)[func](addr)
+
+    return result
   }
 }

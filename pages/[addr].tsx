@@ -11,6 +11,7 @@ import { useWallet } from '../lib/context'
 import useSWR from 'swr'
 import Head from 'next/head'
 import { OGP } from 'react-ogp'
+import { Alert } from '../components/Alert'
 
 const PersonalGallery = () => {
   const { address, provider } = useWallet()
@@ -21,7 +22,9 @@ const PersonalGallery = () => {
 
   useEffect(() => {
     if (URIs) {
-      fetchNFTs(URIs).then((nfts) => setNfts(nfts))
+      fetchNFTs(URIs).then((nfts) => {
+        setNfts(nfts)
+      })
     }
   }, [URIs])
 
@@ -59,13 +62,15 @@ const PersonalGallery = () => {
 const AddressGallery = ({ provider, addr }: { provider: ethers.providers.JsonRpcProvider; addr: string }) => {
   const [nfts, setNfts] = useState<NFTType[]>([])
 
-  const { data: URIs } = useSWR<{ uri: string; id: ethers.BigNumber }[]>([addr, provider], etherFetcher)
+  const { data: URIs, error } = useSWR<{ uri: string; id: ethers.BigNumber }[]>([addr, provider], etherFetcher)
 
   useEffect(() => {
     if (addr && URIs) {
       fetchNFTs(URIs).then((nfts) => setNfts(nfts))
     }
-  }, [provider, addr])
+  }, [provider, addr, URIs])
+
+  if (error) return <Alert error={error} />
 
   return (
     <main>
