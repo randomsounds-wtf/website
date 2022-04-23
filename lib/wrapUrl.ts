@@ -1,3 +1,3 @@
 export const wrapUrl = (uri: string) => {
-  return `https://ipfs.randomsounds.wtf/ipfs/${uri}`
+  return `https://ipfs.io/ipfs/${uri}`
 }
