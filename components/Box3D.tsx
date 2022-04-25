@@ -22,11 +22,11 @@ export const Box3D = ({ rotateForce, children, minWidth, minHeight, ...props }: 
 
   return (
     <div
+      {...props}
       onMouseMove={(e) => {
         setX(-((e.pageY / height) * 2 - 1) * rotateForce)
         setY(-((e.pageX / width) * 2 - 1) * rotateForce)
       }}
-      className={`motion-box ${props.className || ''}`}
       style={{
         perspective: props.perspective,
         minWidth: minWidth,
