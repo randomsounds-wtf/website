@@ -9,7 +9,8 @@
     "dev:polygon": "env NEXT_PUBLIC_NETWORK=polygon next",
     "build": "next build",
     "export": "next export",
-    "start": "next start"
+    "start": "next start",
+    "prebuild": "pnpm i -g pnpm@latest"
   },
   "repository": {
     "type": "git",
