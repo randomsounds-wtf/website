@@ -32,8 +32,5 @@ module.exports = {
   images: {
     domains: ['ipfs.randomsounds.wtf']
   },
-  experimental: {
-    esmExternals: 'loose'
-  },
   env: selectEnv()
 }

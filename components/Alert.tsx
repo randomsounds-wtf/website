@@ -16,7 +16,6 @@ export const Alert = ({
 
   return (
     <>
-      {/* @ts-ignore */}
       <style jsx>
         {`
           .container {
