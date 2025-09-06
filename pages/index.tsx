@@ -1,7 +1,6 @@
 import { NFT } from '../components/NFT'
 import { ownerAddress } from '../lib/constants'
 import { Box3D } from '../components/Box3D'
-import Link from 'next/link'
 import Image from 'next/image'
 import Router from 'next/router'
 import { useEffect, useState } from 'react'
@@ -11,6 +10,7 @@ import Draggable from 'react-draggable'
 // @ts-ignore
 import { index, preview } from '../styles/index.module.css'
 import Head from 'next/head'
+import { BigNumber } from 'ethers'
 
 const nft = {
   audio_url: 'QmcNVWdGTZb8xj3rHvs7rDq1BxbiB7MKvCGsDtAq6WNrxj',
@@ -24,12 +24,13 @@ const Index = () => {
   const [nftsLeft, setNftsLeft] = useState(50)
 
   useEffect(() => {
-    getContract(provider).then((contract) => {
-      contract.balanceOf(ownerAddress).then((b) => {
+    if (provider) {
+      const contract = getContract(provider)
+      contract.balanceOf(ownerAddress).then((b: BigNumber) => {
         setNftsLeft(b.toNumber())
       })
-    })
-  }, [])
+    }
+  }, [provider])
 
   return (
     <main className={index}>
@@ -47,15 +48,7 @@ const Index = () => {
         </style>
         <div>
           <span id="saleCount">
-            NFTs left: {nftsLeft} (
-            {nftsLeft === 0 ? (
-              'Sold out!'
-            ) : (
-              <Link href="/claim">
-                <a>You still can buy!</a>
-              </Link>
-            )}
-            )
+            NFTs left: {nftsLeft}
           </span>
           <h1>RAND0M S0UNDS</h1>
           <span>
@@ -83,11 +76,6 @@ const Index = () => {
             allows you to create music from random seed. The program was written by{' '}
             <a href="http://maciej.codeminion.com">Maciej Biedrzycki</a>.
           </p>
-          <h2>Where can I buy them?</h2>
-          <p>
-            Go to <Link href="/claim">Claim</Link> page to get any NFT that is not sold yet. All NFTs have fixed price -
-            120 MATIC.
-          </p>
           <h2>Why only 50 NFTs?</h2>
           <p>
             cgMusic exports audio to MIDI so it takes some time to export it first, convert, upload to IPFS and the mint
@@ -97,10 +85,6 @@ const Index = () => {
           <p>
             It&quot;s super cheap to deploy. While it costs ~$50-200 to deploy on mainnet on Polygon it costs less than
             a cent.
-          </p>
-          <h2>Is the contract open source?</h2>
-          <p>
-            Yup, here is the <a href="https://github.com/randomsounds-wtf/contracts">repo</a>.
           </p>
         </div>
         <Draggable>

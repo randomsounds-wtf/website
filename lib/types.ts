@@ -1,4 +1,3 @@
-import { useOnboard } from 'use-onboard'
 
 export type NFTType = {
   image: string
@@ -8,4 +7,3 @@ export type NFTType = {
 
 export type NFTWithID = NFTType & { id: number }
 
-export type WalletProps = ReturnType<typeof useOnboard>

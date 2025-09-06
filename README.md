@@ -1,6 +1,6 @@
 # `RAND0M // S0UNDS` website
 
-Visit -> https://randomsounds.wtf
+Visit -> https://randomsounds.vercel.app
 
 ## Local setup
 

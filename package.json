@@ -5,43 +5,29 @@
   "main": "index.js",
   "scripts": {
     "dev": "next",
-    "dev:ropsten": "env NEXT_PUBLIC_NETWORK=ropsten next",
     "dev:polygon": "env NEXT_PUBLIC_NETWORK=polygon next",
     "build": "next build",
     "export": "next export",
     "start": "next start",
     "preinstall": "pnpm i -g pnpm@latest"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/talentlessguy/pianoid.git"
-  },
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/talentlessguy/pianoid/issues"
-  },
-  "homepage": "https://github.com/talentlessguy/pianoid#readme",
   "dependencies": {
     "@pinata/sdk": "^1.1.23",
-    "@randomsounds/contracts": "^1.0.0",
     "bnc-onboard": "^1.38.2",
-    "fetch-blob": "^3.1.5",
     "next": "^12.1.6",
-    "node-fetch": "^3.2.3",
     "quick-lru": "^6.0.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-draggable": "^4.4.4",
     "react-external-link": "^1.2.2",
     "react-ogp": "^0.0.3",
-    "send-tx": "^0.0.0",
     "skia-canvas": "^0.9.25",
     "swr": "^1.3.0",
     "typeface-major-mono-display": "^1.1.13",
-    "typeface-space-mono": "^1.1.13",
-    "use-onboard": "^0.2.8"
+    "typeface-space-mono": "^1.1.13"
   },
   "devDependencies": {
     "@types/node": "^16.7.10",
@@ -51,5 +37,6 @@
     "ethers": "^5.6.4",
     "typescript": "^4.6.4",
     "typescript-plugin-css-modules": "^3.4.0"
-  }
+  },
+  "packageManager": "pnpm@10.11.0+sha512.6540583f41cc5f628eb3d9773ecee802f4f9ef9923cc45b69890fb47991d4b092964694ec3a4f738a420c918a333062c8b925d312f42e4f0c263eb603551f977"
 }

@@ -72,21 +72,7 @@ const Preview = ({ id, description, owner, ...nft }: Props) => {
               </ExternalLink>
             </div>
             <p>{description}</p>
-
-            {owner === ownerAddress ? (
-              <Link href="/claim">
-                <a
-                  style={{
-                    width: 'max-content'
-                  }}
-                  className={`${btn} ${claim}`}
-                >
-                  Claim
-                </a>
-              </Link>
-            ) : (
-              <p>Owner: {owner}</p>
-            )}
+              <p>Owner: {owner}</p>      
           </div>
         </div>
       </main>
@@ -99,6 +85,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ params, re
 
   if (typeof id === 'string') {
     const c = await getContract(provider)
+
+    console.log(c)
 
     const uri = await c.tokenURI(id)
 

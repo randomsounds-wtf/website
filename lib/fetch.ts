@@ -1,12 +1,99 @@
 import { wrapUrl } from './wrapUrl'
 import { Contract, ethers } from 'ethers'
-import NFTJSON from '@randomsounds/contracts/artifacts/contracts/RandomSoundsNFT.sol/RandomSoundsNFT.json'
-import { RandomSoundsNFT } from '@randomsounds/contracts/typechain/RandomSoundsNFT'
 import { NFTWithID } from './types'
 import { contractAddress } from './constants'
 
-export const getContract = async (provider: ethers.providers.Provider | ethers.Signer) => {
-  const contract = new Contract(contractAddress, NFTJSON.abi, provider) as unknown as RandomSoundsNFT
+const abi = [
+  {
+    "constant": true,
+    "inputs": [
+      { "name": "owner", "type": "address" }
+    ],
+    "name": "balanceOf",
+    "outputs": [
+      { "name": "balance", "type": "uint256" }
+    ],
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      { "name": "tokenId", "type": "uint256" }
+    ],
+    "name": "ownerOf",
+    "outputs": [
+      { "name": "owner", "type": "address" }
+    ],
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      { "name": "from", "type": "address" },
+      { "name": "to", "type": "address" },
+      { "name": "tokenId", "type": "uint256" }
+    ],
+    "name": "transferFrom",
+    "outputs": [],
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      { "name": "to", "type": "address" },
+      { "name": "tokenId", "type": "uint256" }
+    ],
+    "name": "approve",
+    "outputs": [],
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      { "name": "tokenId", "type": "uint256" }
+    ],
+    "name": "getApproved",
+    "outputs": [
+      { "name": "operator", "type": "address" }
+    ],
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "name": "from", "type": "address" },
+      { "indexed": true, "name": "to", "type": "address" },
+      { "indexed": true, "name": "tokenId", "type": "uint256" }
+    ],
+    "name": "Transfer",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "name": "owner", "type": "address" },
+      { "indexed": true, "name": "approved", "type": "address" },
+      { "indexed": true, "name": "tokenId", "type": "uint256" }
+    ],
+    "name": "Approval",
+    "type": "event"
+  },
+    {
+    "constant": true,
+    "inputs": [
+      { "name": "tokenId", "type": "uint256" }
+    ],
+    "name": "tokenURI",
+    "outputs": [
+      { "name": "uri", "type": "string" }
+    ],
+    "type": "function"
+  },
+]
+
+
+export const getContract = (provider: ethers.providers.Provider | ethers.Signer) => {
+  const contract = new Contract(contractAddress, abi, provider)
 
   return contract
 }
@@ -26,7 +113,7 @@ export const fetchNFTs = (URIs: { uri: string; id: ethers.BigNumber }[]): Promis
 export const etherFetcher = async (
   addr: string,
   provider: ethers.providers.Provider,
-  func: keyof RandomSoundsNFT = 'tokenURIsAndIDsByOwner'
+  func: string
 ) => {
   if (provider) {
     const contract = await getContract(provider)
