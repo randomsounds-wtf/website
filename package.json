@@ -24,7 +24,6 @@
     "react-draggable": "^4.4.4",
     "react-external-link": "^1.2.2",
     "react-ogp": "^0.0.3",
-    "skia-canvas": "^0.9.25",
     "swr": "^1.3.0",
     "typeface-major-mono-display": "^1.1.13",
     "typeface-space-mono": "^1.1.13"
