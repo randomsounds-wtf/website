@@ -8,8 +8,7 @@
     "dev:polygon": "env NEXT_PUBLIC_NETWORK=polygon next",
     "build": "next build",
     "export": "next export",
-    "start": "next start",
-    "preinstall": "pnpm i -g pnpm@latest"
+    "start": "next start"
   },
   "keywords": [],
   "author": "",
